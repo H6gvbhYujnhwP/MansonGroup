@@ -234,13 +234,10 @@
           <p>Tell us what you need and we'll show you how much you could save by going direct. No brokers. No obligation.</p>
         </div>
         <div class="cta-form-wrapper">
-          <form class="cta-form" id="cta-form" action="https://formsubmit.co/neil@weprintcatalogues.com" method="POST">
-            <!-- FormSubmit configuration -->
+          <form class="cta-form" id="cta-form" action="https://formspree.io/f/xqegqpbp" method="POST">
+            <!-- Formspree configuration -->
             <input type="hidden" name="_subject" value="New Quote Request from weprintcatalogues.com">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_next" value="">
-            <input type="text" name="_honey" style="display:none">
+            <input type="text" name="_gotcha" style="display:none">
 
             <div class="cta-field">
               <label for="cta-name">Name</label>
@@ -282,11 +279,30 @@
     <div id="root"></div>
 
     <script>
-      // Set the _next redirect to current page after form submission
+      // Handle form submission via Formspree with AJAX for better UX
       document.addEventListener('DOMContentLoaded', function() {
-        var nextField = document.querySelector('input[name="_next"]');
-        if (nextField) {
-          nextField.value = window.location.href;
+        var form = document.getElementById('cta-form');
+        var successMsg = document.getElementById('cta-success');
+        if (form) {
+          form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            var data = new FormData(form);
+            fetch(form.action, {
+              method: 'POST',
+              body: data,
+              headers: { 'Accept': 'application/json' }
+            }).then(function(response) {
+              if (response.ok) {
+                form.style.display = 'none';
+                successMsg.classList.add('show');
+                form.reset();
+              } else {
+                alert('Oops! Something went wrong. Please try again or call us directly.');
+              }
+            }).catch(function() {
+              alert('Oops! Something went wrong. Please try again or call us directly.');
+            });
+          });
         }
       });
     </script>
