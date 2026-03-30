@@ -47,16 +47,17 @@
       .cta-inner {
         max-width: 1200px;
         margin: 0 auto;
-        padding: 28px 24px;
+        padding: 24px 24px;
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         justify-content: space-between;
         gap: 32px;
         position: relative;
       }
       .cta-text {
         flex: 0 0 auto;
-        max-width: 340px;
+        max-width: 280px;
+        padding-top: 4px;
       }
       .cta-text h2 {
         font-family: 'Playfair Display', serif;
@@ -78,19 +79,32 @@
       }
       .cta-form-wrapper {
         flex: 1;
-        max-width: 780px;
+        max-width: 850px;
       }
       .cta-form {
         display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .cta-row-1 {
+        display: flex;
         align-items: flex-end;
-        gap: 10px;
-        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .cta-row-2 {
+        display: flex;
+        align-items: flex-end;
+        gap: 8px;
       }
       .cta-field {
         flex: 1;
-        min-width: 130px;
+        min-width: 0;
       }
-      .cta-field label {
+      .cta-field-info {
+        flex: 1;
+      }
+      .cta-field label,
+      .cta-field-info label {
         display: block;
         font-family: 'Space Grotesk', sans-serif;
         font-size: 10px;
@@ -101,7 +115,8 @@
         margin-bottom: 4px;
       }
       .cta-field input,
-      .cta-field select {
+      .cta-field select,
+      .cta-field-info input {
         width: 100%;
         padding: 10px 12px;
         font-family: 'DM Sans', sans-serif;
@@ -114,19 +129,21 @@
         transition: all 0.2s ease;
         box-sizing: border-box;
       }
-      .cta-field input::placeholder {
+      .cta-field input::placeholder,
+      .cta-field-info input::placeholder {
         color: #8A8A86;
       }
       .cta-field input:focus,
-      .cta-field select:focus {
+      .cta-field select:focus,
+      .cta-field-info input:focus {
         border-color: #C9A84C;
         box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.2);
       }
       .cta-submit {
         flex: 0 0 auto;
-        padding: 10px 24px;
+        padding: 10px 20px;
         font-family: 'Space Grotesk', sans-serif;
-        font-size: 13px;
+        font-size: 12px;
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.08em;
@@ -137,6 +154,7 @@
         cursor: pointer;
         transition: all 0.2s ease;
         white-space: nowrap;
+        height: 41px;
       }
       .cta-submit:hover {
         background: #D4B65E;
@@ -202,16 +220,23 @@
         .cta-badge {
           justify-content: center;
         }
-        .cta-form {
+        .cta-row-1 {
           flex-direction: column;
+          gap: 8px;
         }
-        .cta-field {
+        .cta-row-2 {
+          flex-direction: column;
+          gap: 8px;
+        }
+        .cta-field,
+        .cta-field-info {
           min-width: 100%;
         }
         .cta-submit {
           width: 100%;
           padding: 14px 24px;
           font-size: 14px;
+          height: auto;
         }
       }
       @media (max-width: 600px) {
@@ -243,34 +268,45 @@
             <input type="hidden" name="_subject" value="New Quote Request from weprintcatalogues.com">
             <input type="text" name="_gotcha" style="display:none">
 
-            <div class="cta-field">
-              <label for="cta-name">Name</label>
-              <input type="text" id="cta-name" name="name" placeholder="Your name" required>
+            <!-- Row 1: Name, Company, Email, Phone, Dropdown, Submit -->
+            <div class="cta-row-1">
+              <div class="cta-field">
+                <label for="cta-name">Name</label>
+                <input type="text" id="cta-name" name="name" placeholder="Your name" required>
+              </div>
+              <div class="cta-field">
+                <label for="cta-company">Company</label>
+                <input type="text" id="cta-company" name="company" placeholder="Company name">
+              </div>
+              <div class="cta-field">
+                <label for="cta-email">Email</label>
+                <input type="email" id="cta-email" name="email" placeholder="you@company.com" required>
+              </div>
+              <div class="cta-field">
+                <label for="cta-phone">Phone</label>
+                <input type="tel" id="cta-phone" name="phone" placeholder="Phone number">
+              </div>
+              <div class="cta-field">
+                <label for="cta-message">What do you need?</label>
+                <select id="cta-message" name="requirement">
+                  <option value="Product Catalogue">Product Catalogue</option>
+                  <option value="Trade Directory">Trade Directory</option>
+                  <option value="Parts Manual">Parts Manual</option>
+                  <option value="Brochure / Lookbook">Brochure / Lookbook</option>
+                  <option value="Price List">Price List</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <button type="submit" class="cta-submit">Get My Free Quote &rarr;</button>
             </div>
-            <div class="cta-field">
-              <label for="cta-company">Company</label>
-              <input type="text" id="cta-company" name="company" placeholder="Company name">
+
+            <!-- Row 2: More Info (optional) -->
+            <div class="cta-row-2">
+              <div class="cta-field-info">
+                <label for="cta-info">More Info <span style="font-weight:400;text-transform:none;letter-spacing:0;opacity:0.7;">(optional)</span></label>
+                <input type="text" id="cta-info" name="more_info" placeholder="Tell us more about your project, e.g. page count, quantity, deadline...">
+              </div>
             </div>
-            <div class="cta-field">
-              <label for="cta-email">Email</label>
-              <input type="email" id="cta-email" name="email" placeholder="you@company.com" required>
-            </div>
-            <div class="cta-field">
-              <label for="cta-phone">Phone</label>
-              <input type="tel" id="cta-phone" name="phone" placeholder="Phone number">
-            </div>
-            <div class="cta-field">
-              <label for="cta-message">What do you need?</label>
-              <select id="cta-message" name="requirement">
-                <option value="Product Catalogue">Product Catalogue</option>
-                <option value="Trade Directory">Trade Directory</option>
-                <option value="Parts Manual">Parts Manual</option>
-                <option value="Brochure / Lookbook">Brochure / Lookbook</option>
-                <option value="Price List">Price List</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
-            <button type="submit" class="cta-submit">Get My Free Quote &rarr;</button>
           </form>
           <div class="cta-success" id="cta-success">
             <h3>&#10003; Thank You!</h3>
