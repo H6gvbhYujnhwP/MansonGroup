@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+Disallow: /api/*
+Sitemap: https://manningcat-zus2o5vt.manus.space/sitemap.xml
