@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "description": "We Print Catalogues - Factory-Direct Catalogue Printing Since 1969",
   "scripts": {
-    "build": "mkdir -p dist && cp -r index.html assets robots.txt favicon.ico favicon-16x16.png favicon-32x32.png apple-touch-icon.png android-chrome-192x192.png android-chrome-512x512.png dist/"
+    "build": "mkdir -p dist && cp -r index.html assets robots.txt favicon.ico favicon-16x16.png favicon-32x32.png apple-touch-icon.png android-chrome-192x192.png android-chrome-512x512.png images dist/"
   }
 }
