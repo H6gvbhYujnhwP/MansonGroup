@@ -1,6 +1,6 @@
 # We Print Catalogues
 
-Factory-direct catalogue printing website for Manning Group / weprintcatalogues.com.
+Factory-direct catalogue printing website for Manning Group / mansoncatalogues.com.
 
 ## Deployment
 
